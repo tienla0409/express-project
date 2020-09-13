@@ -46,7 +46,7 @@ app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.render("home");
 });
 
 app.listen(PORT, () => console.log(`Server listening on PORT ${PORT}`));
