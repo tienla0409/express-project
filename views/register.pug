@@ -5,7 +5,7 @@ html
     link(rel="stylesheet", href="css/login.css")
 	
   body
-    form.login-form(autocomplete="off", action="#" method="POST")
+    form.login-form(autocomplete="off", method="POST")
       input(type="email", name="email", placeholder="Email")
       .input-icon
         input(type='password', name='password', placeholder='Password')
@@ -18,5 +18,7 @@ html
           each err in errors
             li= err
       button register
+      a.login(href='/login') Login
+
 
     script(src="js/login.js")

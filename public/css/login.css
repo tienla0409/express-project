@@ -78,13 +78,18 @@
     border-color: var(--primary);
   }
 
-  .login-form .forgot {
+  .login-form .forgot, .login {
     display: inline-block;
     text-transform: uppercase;
     color: #333;
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
+  }
+
+  .login-form .register {
+    display: inline-block;
+    margin-left: 1rem;
   }
 
   .login-form button {
@@ -111,4 +116,9 @@
     transform: translateY(-50%);
     color: #ccc;
     cursor: pointer;
+  }
+
+  .login {
+    float: right;
+    margin: 1rem 0;
   }

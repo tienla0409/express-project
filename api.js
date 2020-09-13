@@ -1,8 +1,12 @@
 const axios = require("axios");
 
-const data = axios.get("http://localhost:3000/users")
-									.then(res => {
-										data = res.data;
-									}).catch(err => console.log(err));
+module.exports = {
+	getData: function() {
+		return axios.get("http://localhost:3000/users")
+ 				 	.then(res => res.data)
+	},
 
-module.exports = data;
+	postData: function(data) {
+		return axios.post("http://localhost:3000/users", data).catch(err => console.log(`Errors when register: ${err}`));
+	},
+}
