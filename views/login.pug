@@ -1,17 +1,17 @@
-html
-	head
-		title= title
-		link(rel="stylesheet", href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css", integrity='sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p', crossorigin='anonymous')
-		link(rel="stylesheet", href="css/login.css")
-	
-	body
-		form.login-form(autocomplete="off", method="POST")
-			input(type="email", name="email", placeholder="Email")
-			.input-icon
-				input(type='password', name='password', placeholder='Password')
-				i.fa.fa-eye.show-password
-			a.forgot(href='#') Forgot password?
-			a.register(href="/register") Register
-			button(class="disable__email, disable__password") Sign in
+extends common.pug
 
-		script(src="js/login.js")
+block head
+	title= title
+	link(rel="stylesheet", href="css/login.css")
+
+block content
+	form.login-form(autocomplete="off", method="POST")
+		input(type="email", name="email", placeholder="Email")
+		.input-icon
+			input(type='password', name='password', placeholder='Password')
+			i.fa.fa-eye.show-password
+		a.forgot(href='#') Forgot password?
+		a.register(href="/register") Register
+		button(class="disable__email, disable__password") Sign in
+
+	script(src="js/login.js")
