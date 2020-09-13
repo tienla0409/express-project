@@ -1,6 +1,14 @@
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+
+mongoose.connect("mongodb://localhost/users");
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connect error"));
+db.on("open", function() {
+	console.log("connect success");
+});
 
 // import core module
 const path = require("path");
