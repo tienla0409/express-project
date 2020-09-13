@@ -4,11 +4,14 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 // connect mongodb
-mongoose.connect("mongodb://localhost:27017/users", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/users", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connect error"));
-db.on("open", function() {
-	console.log("connect success");
+db.on("open", function () {
+  console.log("connect success");
 });
 
 // import core module
