@@ -1,18 +1,14 @@
-const db = require("../../db.json");
+const User = require("../../models/user.model");
 
 module.exports = {
 	getLogin: function(req, res, next) {
 		res.render("login.pug", {title: "Login"});
-		console.log(db);
 	},
-	postLogin: function(req, res, next) {
+	postLogin: async function(req, res, next) {
 		const { email, password } = req.body;
-		const usersDB = db.users;
-		const userMatch = usersDB.find(user => {
-			return user.email === email;
-		});
+		const userMatch = await User.findOne({ email: email, password: password });
 
-		if(userMatch && userMatch.password === password) {
+		if(userMatch) {
 			return res.send("Logined");
 		}
  
