@@ -8,4 +8,6 @@ const router = express.Router();
 
 router.get("/", controllers.getRegister);
 
+router.post("/", controllers.postRegister);
+
 module.exports = router;

@@ -1,5 +1,3 @@
 {
-	"users": [
-		{ "email": "admin@gmail.com", "password": "admin" }
-	]
+  "users": [{ "email": "admin@gmail.com", "password": "admin" }]
 }
