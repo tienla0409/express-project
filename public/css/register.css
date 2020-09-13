@@ -56,13 +56,13 @@ button {
   cursor: pointer;
 }
 
-.login-form {
+.register-form {
   max-width: 35rem;
   margin: 0 auto;
   padding: 1.5rem;
 }
 
-.login-form input {
+.register-form input {
   padding: 1.5rem;
   border: 1px solid #eee;
   color: #333;
@@ -74,11 +74,12 @@ button {
   font-weight: normal;
 }
 
-.login-form input:focus {
+.register-form input:focus {
   border-color: var(--primary);
 }
 
-.login-form .forgot {
+.register-form .forgot,
+.login {
   display: inline-block;
   text-transform: uppercase;
   color: #333;
@@ -87,12 +88,7 @@ button {
   margin-bottom: 1.5rem;
 }
 
-.login-form .register {
-  display: inline-block;
-  margin-left: 1rem;
-}
-
-.login-form button {
+.register-form button {
   width: 100%;
   padding: 1.5rem;
   border-radius: 4px;
@@ -101,15 +97,15 @@ button {
   text-transform: uppercase;
 }
 
-.login-form .input-icon {
+.register-form .input-icon {
   position: relative;
 }
 
-.login-form .input-icon input {
+.register-form .input-icon input {
   padding-right: 4rem;
 }
 
-.login-form .input-icon i {
+.register-form .input-icon i {
   position: absolute;
   top: 50%;
   right: 1.5rem;
@@ -118,8 +114,14 @@ button {
   cursor: pointer;
 }
 
+.login {
+  float: right;
+  margin: 1rem 0;
+}
+
 .disable__email,
-.disable__password {
+.disable__password,
+.disable__confirmPassword {
   color: rgba(255, 255, 255, 0.87) !important;
   cursor: default;
   pointer-events: none;

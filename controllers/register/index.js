@@ -1,3 +1,6 @@
+// import third-party package
+const bcrypt = require("bcrypt");
+
 // import models database
 const User = require("../../models/user.model");
 
@@ -15,17 +18,21 @@ module.exports = {
 
     const errors = [];
 
-    const existEmail = await User.findOne({ email: email});
+    const existEmail = await User.findOne({
+      email: email
+    });
     if (!existEmail) { // email not exist => can register
       if (password === confirmPassword) { // check password match
-        const userNew = new User({
-          email: email,
-          password: password
-        });
+        bcrypt.hash(password, 10, (err, hashPassword) => {
+          const userNew = new User({
+            email: email,
+            password: hashPassword
+          });
 
-        userNew.save(err => {
-          if(err) return err;
-          else console.log(`Save user successfully`);
+          userNew.save(err => {
+            if (err) return err;
+            else console.log(`Save user successfully`);
+          });
         });
         return res.redirect("/login");
       } else { // password and confirmPassword not matched
