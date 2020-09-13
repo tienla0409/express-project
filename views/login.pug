@@ -5,10 +5,10 @@ html
 		link(rel="stylesheet", href="css/login.css")
 	
 	body
-		form.login-form(autocomplate="off", action="#")
+		form.login-form(autocomplate="off", action="#" method="POST")
 			input(type="email", name="email", placeholder="Email")
 			.input-icon
-				input(type='password', name='email', placeholder='Password')
+				input(type='password', name='password', placeholder='Password')
 				i.fa.fa-eye.show-password
 			a.forgot(href='#') Forgot password?
 			button Sign in
