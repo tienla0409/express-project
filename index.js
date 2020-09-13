@@ -21,15 +21,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 // use middler third-party
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
   extended: true
 }));
 
 // import Routers
 const loginRouter = require("./models/login");
+const registerRouter = require("./models/register");
 
 // use Routers
 app.use("/login", loginRouter);
+app.use("/register", registerRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World");
