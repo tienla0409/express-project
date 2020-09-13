@@ -1,6 +1,15 @@
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+
+// connect mongodb
+mongoose.connect("mongodb://localhost:27017/users", {useNewUrlParser: true});
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connect error"));
+db.on("open", function() {
+	console.log("connect success");
+});
 
 // import core module
 const path = require("path");
@@ -26,8 +35,8 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 }));
 
 // import Routers
-const loginRouter = require("./models/login");
-const registerRouter = require("./models/register");
+const loginRouter = require("./routes/login");
+const registerRouter = require("./routes/register");
 
 // use Routers
 app.use("/login", loginRouter);
