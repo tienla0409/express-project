@@ -7,7 +7,8 @@ module.exports = {
       console.log(listBook);
       res.render("books", {
         title: "List Book",
-        listBook
+        listBook,
+        user: req.session.user
       });
     } catch (err) {
       res.status(404).send("List empty");
