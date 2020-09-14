@@ -50,11 +50,13 @@ app.use(session({
 
 // import Routers
 const loginRouter = require("./routes/login");
+const logoutRouter = require("./routes/logout");
 const registerRouter = require("./routes/register");
 const booksRouter = require("./routes/books");
 
 // use Routers
 app.use("/login", loginRouter);
+app.use("/logout", logoutRouter);
 app.use("/register", registerRouter);
 app.use("/books", authMiddleware.authLogin, booksRouter);
 
