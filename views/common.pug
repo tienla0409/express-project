@@ -1,20 +1,24 @@
 html
 	head
 		block head
+		link(rel="stylesheet", href="css/common.css")
+		link(rel="stylesheet", href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css", integrity='sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p', crossorigin='anonymous')
 		link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z', crossorigin='anonymous')
 		script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV', crossorigin='anonymous')
-		link(rel="stylesheet", href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css", integrity='sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p', crossorigin='anonymous')
 	
 	body
 		nav.navbar.navbar-expand-md.navbar-dark.bg-dark
-			button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarResponse")
-				span.navbar-toggler-icon
-			.collapse.navbar-collapse#navbarResponse
-				ul.navbar-nav.mr-auto
-					li.nav-item.active
-						a.nav-link(href="/") Home
-					li.nav-item
-						a.nav-link(href="/login") Login
+			.container
+				button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarResponse")
+					span.navbar-toggler-icon
+				.collapse.navbar-collapse#navbarResponse
+					ul.navbar-nav.mr-auto
+						li.nav-item.active
+							a.nav-link(href="/") Home
+						li.nav-item
+							a.nav-link(href="/login") Login
+						li.nav-item
+							a.nav-link(href="/books") Books
 
 		block content
 

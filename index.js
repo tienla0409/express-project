@@ -40,10 +40,12 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 // import Routers
 const loginRouter = require("./routes/login");
 const registerRouter = require("./routes/register");
+const booksRouter = require("./routes/books");
 
 // use Routers
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
+app.use("/books", booksRouter);
 
 app.get("/", (req, res) => {
   res.render("home");

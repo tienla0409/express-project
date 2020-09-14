@@ -1,33 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
-:root {
-  --primary: #08aeea;
-  --secondary: #13d2b8;
-  --purple: #bd93f9;
-  --pink: #ff6bcb;
-  --blue: #8be9fd;
-  --gray: #333;
-  --font: "Poppins", sans-serif;
-  --gradient: linear-gradient(40deg, #ff6ec4, #7873f5);
-  --shadow: 0 0 15px 0 rgba(0, 0, 0, 0.05);
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-}
-
-body {
-  font-family: var(--font);
-  font-size: 1.4rem;
-  overflow-x: hidden;
-  font-weight: 300;
-}
-
 img {
   display: block;
   max-width: 100%;
@@ -57,7 +27,7 @@ button {
 }
 
 .register-form {
-  position: relative;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -94,7 +64,7 @@ button {
 
 .register-form button {
   width: 100%;
-  padding: 1.5rem;
+  padding: 0.9rem;
   border-radius: 4px;
   color: white;
   background-color: var(--primary);
@@ -120,7 +90,6 @@ button {
 
 .login {
   float: right;
-  margin: 1rem 0;
 }
 
 .disable__email,

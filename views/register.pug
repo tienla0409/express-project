@@ -2,16 +2,19 @@ extends common.pug
 
 block head
   title= title
-  link(rel="stylesheet", href="css/login.css")
+  link(rel="stylesheet", href="css/register.css")
 
 block content
-  form.login-form(autocomplete="off", method="POST")
+  form.register-form(autocomplete="off", method="POST")
     input(type="email", name="email", placeholder="Email")
     .input-icon
       input(type='password', name='password', placeholder='Password')
       i.fa.fa-eye.show-password
-    a.forgot(href='#') Forgot password?
-    a.register(href="/register") Register
-    button(class="disable__email, disable__password") Sign in
+    .input-icon
+      input(type='password', name='confirmPassword', placeholder='Confirm Password')
+      i.fa.fa-eye.show-password
+    button(class="disable__email, disable__password") Register
+    p.login You have account? &nbsp;
+      a(href="/login") Login
 
-  script(src="js/login.js")
+  script(src="js/register.js")

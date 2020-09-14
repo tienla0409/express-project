@@ -68,7 +68,7 @@ button {
 
 .login-form button {
   width: 100%;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 4px;
   color: white;
   background-color: var(--primary);

@@ -6,7 +6,9 @@ const User = require("../../models/user.model");
 
 module.exports = {
   getRegister: function (req, res, next) {
-    res.render("register.pug");
+    res.render("register.pug", {
+      title: "Register"
+    });
   },
 
   postRegister: async function (req, res, next) {
