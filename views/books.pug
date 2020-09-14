@@ -11,39 +11,13 @@ block content
       input.search-form__input(type='text', placeholder='Search')
 
     .books
-      .book.card
-        img.card-img-top(src="https://via.placeholder.com/150")
-        .card-body
-          h5.card-title Card title
-          p.card-text Lorem ipsum dolor sit amet consectetur.
-          a.btn.btn-primary Read
-      .book.card
-        img.card-img-top(src="https://via.placeholder.com/150")
-        .card-body
-          h5.card-title Card title
-          p.card-text Lorem ipsum dolor sit amet consectetur.
-          a.btn.btn-primary Read
-      .book.card
-        img.card-img-top(src="https://via.placeholder.com/150")
-        .card-body
-          h5.card-title Card title
-          p.card-text Lorem ipsum dolor sit amet consectetur.
-          a.btn.btn-primary Read
-      .book.card
-        img.card-img-top(src="https://via.placeholder.com/150")
-        .card-body
-          h5.card-title Card title
-          p.card-text Lorem ipsum dolor sit amet consectetur.
-          a.btn.btn-primary Read
-      .book.card
-        img.card-img-top(src="https://via.placeholder.com/150")
-        .card-body
-          h5.card-title Card title
-          p.card-text Lorem ipsum dolor sit amet consectetur.
-          a.btn.btn-primary Read
-      .book.card
-        img.card-img-top(src="https://via.placeholder.com/150")
-        .card-body
-          h5.card-title Card title
-          p.card-text Lorem ipsum dolor sit amet consectetur.
-          a.btn.btn-primary Read
+      for book in listBook
+        .book.card.d-flex
+          img.card-img-top(src=book.image)
+          .card-body
+            h5.card-title= book.title
+            p.card-text= book.description
+            a.align-self-end.btn.btn-primary(href="books/" + book.id) Read
+        
+
+  script(src="js/books.js")
