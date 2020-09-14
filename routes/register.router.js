@@ -1,7 +1,7 @@
 const express = require("express");
 
 // require controllers
-const controllers = require("../../controllers/register");
+const controllers = require("../controllers/register");
 
 // initial router
 const router = express.Router();

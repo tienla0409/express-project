@@ -49,10 +49,10 @@ app.use(session({
 }));
 
 // import Routers
-const loginRouter = require("./routes/login");
-const logoutRouter = require("./routes/logout");
-const registerRouter = require("./routes/register");
-const booksRouter = require("./routes/books");
+const loginRouter = require("./routes/login.router");
+const logoutRouter = require("./routes/logout.router");
+const registerRouter = require("./routes/register.router");
+const booksRouter = require("./routes/books.router");
 
 // use Routers
 app.use("/login", loginRouter);
@@ -61,7 +61,9 @@ app.use("/register", registerRouter);
 app.use("/books", authMiddleware.authLogin, booksRouter);
 
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", {
+    user: req.session.user
+  });
 });
 
 app.listen(PORT, () => console.log(`Server listening on PORT ${PORT}`));

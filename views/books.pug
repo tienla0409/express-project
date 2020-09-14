@@ -11,13 +11,13 @@ block content
       input.search-form__input(type='text', placeholder='Search')
 
     .books
-      for book in listBook
-        .book.card.d-flex
+      each book in listBook
+        .book.card
           img.card-img-top(src=book.image)
-          .card-body
+          .card-body.d-flex-column
             h5.card-title= book.title
             p.card-text= book.description
-            a.align-self-end.btn.btn-primary(href="books/" + book.id) Read
+            a.justify-self-end.btn.btn-primary(href="books/" + book.id) Read
         
 
   script(src="js/books.js")

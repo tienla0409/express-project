@@ -4,7 +4,6 @@ module.exports = {
   getBooks: async function (req, res, next) {
     try {
       const listBook = await Book.find();
-      console.log(listBook);
       res.render("books", {
         title: "List Book",
         listBook,
