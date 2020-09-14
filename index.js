@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const cookieSession = require("cookie-session");
 
 // connect mongodb
 mongoose.connect("mongodb://localhost:27017/users", {
@@ -36,6 +37,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
   extended: true
 }));
+// app.use(cookieSession({
+//   keys: "stonehihi",
+//   maxAge: 24 * 60 * 60 * 1000, //24h
+// }));
 
 // import Routers
 const loginRouter = require("./routes/login");

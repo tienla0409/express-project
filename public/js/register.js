@@ -6,22 +6,23 @@ window.addEventListener("load", function () {
   const inputPasswordConfirm = registerForm && registerForm.querySelector("input[type='confirmPassword'");
   const inputEmail = registerForm && registerForm.querySelector("input[type='email']");
 
-  function checkLengthInput(e) {
-    if (e.target.value.length <= 0) {
-      btnRegister.classList.add(`disable__${e.target.name}`);
-    } else btnRegister.classList.remove(`disable__${e.target.name}`);
-  }
+  // function checkLengthInput(e) {
+  //   if (e.target.value.length === 0) {
+  //     console.log(e.target.name)
+  //     // btnRegister.classList.add(`disable__${e.target.name}`);
+  //   } else btnRegister.classList.remove(`disable__${e.target.name}`);
+  // }
 
-  inputEmail.addEventListener("keyup", function (e) {
-    const regex = /@.+\..+/;
-    if (regex.test(e.target.value)) {
-      btnRegister.classList.remove(`disable__${e.target.name}`);
-    } else btnRegister.classList.add(`disable__${e.target.name}`);
-  });
+  // inputEmail.addEventListener("keyup", function (e) {
+  //   const regex = /@.+\..+/;
+  //   if (regex.test(e.target.value)) {
+  //     btnRegister.classList.remove(`disable__${e.target.name}`);
+  //   } else btnRegister.classList.add(`disable__${e.target.name}`);
+  // });
 
-  inputPassword.addEventListener("keyup", checkLengthInput);
+  // inputPassword.addEventListener("keyup", checkLengthInput);
 
-  inputPasswordConfirm.addEventListener("keyup", checkLengthInput);
+  // inputPasswordConfirm.addEventListener("keyup", checkLengthInput);
 
   showPasswordIcon.addEventListener("click", function () {
     const inputPasswordType = inputPassword.getAttribute("type");

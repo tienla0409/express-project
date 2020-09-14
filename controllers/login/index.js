@@ -6,6 +6,7 @@ const User = require("../../models/user.model");
 
 module.exports = {
 	getLogin: function (req, res, next) {
+		// console.log(req.session)
 		res.render("login.pug", {
 			title: "Login"
 		});
