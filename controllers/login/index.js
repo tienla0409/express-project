@@ -9,7 +9,7 @@ module.exports = {
 		console.log(req.sessionID)
 		console.log(req.session)
 		res.render("login.pug", {
-			title: "Login"
+			title: "Login",
 		});
 	},
 	postLogin: async function (req, res, next) {
@@ -30,7 +30,6 @@ module.exports = {
 				return res.redirect("/books");
 			};
 		};
-
 
 		res.send("user or password invalid");
 	}
