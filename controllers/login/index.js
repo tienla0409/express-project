@@ -7,7 +7,7 @@ const User = require("../../models/user.model");
 module.exports = {
 	getLogin: function (req, res, next) {
 		res.render("login.pug", {
-			title: "Login"
+			title: "Login",
 		});
 	},
 	postLogin: async function (req, res, next) {
@@ -22,7 +22,10 @@ module.exports = {
 		if (userMatch) {
 			const result = await bcrypt.compare(password, userMatch.password);
 			if (result) { // password matched
-				return res.send("Logined");
+				var sessionData = req.session;
+				sessionData.user = userMatch.sessionID;
+				req.cookie = sessionData
+				return res.redirect("/books");
 			};
 		};
 

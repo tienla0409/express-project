@@ -2,6 +2,13 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const session = require("express-session");
+
+// import core module
+const path = require("path");
+
+// import middleware custom
+const authMiddleware = require("./middleware/auth.middleware");
 
 // connect mongodb
 mongoose.connect("mongodb://localhost:27017/users", {
@@ -13,9 +20,6 @@ db.on("error", console.error.bind(console, "connect error"));
 db.on("open", function () {
   console.log("connect success");
 });
-
-// import core module
-const path = require("path");
 
 // initial instance express
 const app = express();
@@ -36,6 +40,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
   extended: true
 }));
+app.use(session({
+  resave: true,
+  secret: "stonehihi",
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000
+  },
+}));
 
 // import Routers
 const loginRouter = require("./routes/login");
@@ -45,7 +56,7 @@ const booksRouter = require("./routes/books");
 // use Routers
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
-app.use("/books", booksRouter);
+app.use("/books", authMiddleware.authLogin, booksRouter);
 
 app.get("/", (req, res) => {
   res.render("home");

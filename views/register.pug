@@ -11,9 +11,15 @@ block content
       input(type='password', name='password', placeholder='Password')
       i.fa.fa-eye.show-password
     .input-icon
-      input(type='password', name='confirmPassword', placeholder='Confirm Password')
+      input(type='confirmPassword', name='confirmPassword', placeholder='Confirm Password')
       i.fa.fa-eye.show-password
-    button(class="disable__email, disable__password") Register
+    small
+      ul
+        if errors
+          each err in errors
+            li= err
+    //- button(class="disable__email disable__password disable__confirmPassword") Register
+    button Register
     p.login You have account? &nbsp;
       a(href="/login") Login
 
