@@ -35,7 +35,7 @@ img {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 input,
@@ -57,12 +57,16 @@ button {
   cursor: pointer;
 }
 
-.logout,
+.logout a,
 .login a {
   color: #fff;
   font-size: 1.2 rem;
 }
 
 .login a:hover {
+  color: #eee;
+}
+
+.logout a:hover {
   color: #eee;
 }
