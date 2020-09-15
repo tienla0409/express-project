@@ -2,6 +2,7 @@ const Book = require("../../models/book.model");
 
 module.exports = {
   getBooks: async function (req, res, next) {
+    if (!req.query.page) return res.redirect("/books?page=1");
     try {
       const page = parseInt(req.query.page) || 1;
       const perPage = 8;
