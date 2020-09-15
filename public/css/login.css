@@ -33,6 +33,10 @@
   margin-bottom: 1.5rem;
 }
 
+.login-form .forgot:hover {
+  color: rgba(51, 51, 51, 0.78);
+}
+
 .login-form .register {
   display: inline-block;
   margin-left: 1rem;
