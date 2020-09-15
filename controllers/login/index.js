@@ -55,7 +55,7 @@ module.exports = {
 		// userMatch[email].refreshToken = refreshToken;
 
 		// send the access token to the client inside a cookie
-		res.cookie("jwt", accessToken, {
+		res.cookie("user", accessToken, {
 			httpOnly: true
 		});
 

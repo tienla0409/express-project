@@ -60,7 +60,7 @@ app.use("/books", authMiddleware.authLogin, booksRouter);
 
 app.get("/", (req, res) => {
   res.render("home", {
-    user: req.cookies.jwt
+    user: req.cookies.user
   });
 });
 

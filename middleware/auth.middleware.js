@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = {
   authLogin: (req, res, next) => {
-    const accessToken = req.cookies.jwt;
+    const accessToken = req.cookies.user;
     if (!accessToken) return res.redirect("/login");
 
     let payload;

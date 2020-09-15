@@ -19,7 +19,7 @@ module.exports = {
         title: "List Book",
         listBook,
         currentPage,
-        user: req.cookies.jwt
+        user: req.cookies.user
       });
     } catch (err) {
       res.status(404).send(err.message);

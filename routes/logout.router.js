@@ -1,12 +1,11 @@
 const express = require("express");
 
+// import controllers
+const controllers = require("../controllers/logout");
+
 // initial router
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
-  req.session.destroy(err => {
-    return res.status(200).redirect("/");
-  });
-});
+router.get("/", controllers.logoutEmail);
 
 module.exports = router;
