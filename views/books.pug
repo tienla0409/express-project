@@ -6,18 +6,30 @@ block head
 
 block content
   .container.my-3
-    .search-form
+    .search-form  
       i.fal.fa-search.search-form__icon
       input.search-form__input(type='text', placeholder='Search')
 
     .books
-      for book in listBook
-        .book.card.d-flex
+      each book in books
+        .book.card
           img.card-img-top(src=book.image)
-          .card-body
+          .card-body.d-flex-column
             h5.card-title= book.title
             p.card-text= book.description
-            a.align-self-end.btn.btn-primary(href="books/" + book.id) Read
-        
+            a.justify-self-end.btn.btn-primary(href="books/" + book.id) Read
+    nav
+      ul.pagination.pagination-lg.justify-content-center
+        li.page-item
+          a.page-link(href="/books?page=" + (currentPage - 1)) Previous
+        li.page-item
+          a.page-link(href="/books?page=" + (currentPage - 1))= currentPage - 1
+        li.page-item
+          a.page-link(href="/books?page=" + currentPage)= currentPage 
+        li.page-item
+          a.page-link(href="/books?page=" + (currentPage + 1))= currentPage + 1
+        li.page-item
+          a.page-link(href="/books?page=" + (currentPage + 1)) Next
+
 
   script(src="js/books.js")
