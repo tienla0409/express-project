@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
@@ -11,7 +13,7 @@ const path = require("path");
 const authMiddleware = require("./middleware/auth.middleware");
 
 // connect mongodb
-mongoose.connect("mongodb://localhost:27017/users", {
+mongoose.connect(process.env.MONGODB_CONNECT, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -42,7 +44,7 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
 }));
 app.use(session({
   resave: true,
-  secret: "stonehihi",
+  secret: process.env.SESSION_SECRET,
   cookie: {
     maxAge: 24 * 60 * 60 * 1000
   },
