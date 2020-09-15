@@ -18,6 +18,18 @@ block content
             h5.card-title= book.title
             p.card-text= book.description
             a.justify-self-end.btn.btn-primary(href="books/" + book.id) Read
-        
+    nav
+      ul.pagination.pagination-lg.justify-content-center
+        li.page-item
+          a.page-link(href="/books?page=" + (currentPage - 1)) Previous
+        li.page-item
+          a.page-link(href="/books?page=" + (currentPage - 1))= currentPage - 1
+        li.page-item
+          a.page-link(href="/books?page=" + currentPage)= currentPage 
+        li.page-item
+          a.page-link(href="/books?page=" + (currentPage + 1))= currentPage + 1
+        li.page-item
+          a.page-link(href="/books?page=" + (currentPage + 1)) Next
+
 
   script(src="js/books.js")

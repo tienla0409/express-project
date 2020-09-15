@@ -13,9 +13,13 @@ module.exports = {
 
       const books = listBook.splice(start, end);
 
+      const totalPage = Math.ceil(listBook.length / perPage);
+      const currentPage = Math.ceil(end / perPage);
+
       res.render("books", {
         title: "List Book",
         books: books.splice(start, end),
+        currentPage,
         user: req.session.user
       });
     } catch (err) {
