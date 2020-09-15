@@ -6,12 +6,12 @@ block head
 
 block content
   .container.my-3
-    .search-form
+    .search-form  
       i.fal.fa-search.search-form__icon
       input.search-form__input(type='text', placeholder='Search')
 
     .books
-      each book in listBook
+      each book in books
         .book.card
           img.card-img-top(src=book.image)
           .card-body.d-flex-column
