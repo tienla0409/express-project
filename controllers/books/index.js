@@ -19,10 +19,10 @@ module.exports = {
         title: "List Book",
         listBook,
         currentPage,
-        user: req.session.user
+        user: req.cookies.user
       });
     } catch (err) {
-      res.status(404).send("List empty");
+      res.status(404).send(err.message);
     }
   },
 };

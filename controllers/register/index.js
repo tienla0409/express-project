@@ -32,7 +32,7 @@ module.exports = {
             sessionID: req.sessionID,
           });
 
-          userNew.save(err => {
+          userNew.save((err) => {
             if (err) return err;
             else console.log(`Save user successfully`);
           });

@@ -1,5 +1,6 @@
 // import third-party package
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 // import models database
 const User = require("../../models/user.model");
@@ -36,9 +37,28 @@ module.exports = {
 		};
 
 		// password matched
-		var sessionData = req.session;
-		sessionData.user = userMatch.sessionID;
-		req.cookie = sessionData
+		const payload = {
+			user: userMatch._id,
+		};
+
+		const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+			algorithm: "HS256",
+			expiresIn: process.env.ACCESS_TOKEN_LIFE,
+		});
+
+
+		// const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
+		// 	algorithm: "HS256",
+		// 	expiresIn: process.env.REFRESH_TOKEN_LIFE
+		// })
+
+		// userMatch[email].refreshToken = refreshToken;
+
+		// send the access token to the client inside a cookie
+		res.cookie("user", accessToken, {
+			httpOnly: true
+		});
+
 		return res.redirect("/books");
 	}
 };
