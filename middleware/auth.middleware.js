@@ -1,9 +1,16 @@
-const User = require("../models/user.model");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
-  authLogin: async function (req, res, next) {
-    if (req.session && req.session.user) {
-      return next();
-    } else return res.redirect("/login");
+  authLogin: (req, res, next) => {
+    const accessToken = req.cookies.jwt;
+    if (!accessToken) return res.redirect("/login");
+
+    let payload;
+    try {
+      payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+      next();
+    } catch (err) {
+      return res.redirect("/login");
+    }
   },
 };

@@ -3,8 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
-const session = require("express-session");
 
 // import core module
 const path = require("path");
@@ -42,13 +42,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
   extended: true
 }));
-app.use(session({
-  resave: true,
-  secret: process.env.SESSION_SECRET,
-  cookie: {
-    maxAge: 24 * 60 * 60 * 1000
-  },
-}));
+app.use(cookieParser());
 
 // import Routers
 const loginRouter = require("./routes/login.router");
@@ -66,7 +60,7 @@ app.use("/books", authMiddleware.authLogin, booksRouter);
 
 app.get("/", (req, res) => {
   res.render("home", {
-    user: req.session.user
+    user: req.cookies.jwt
   });
 });
 
