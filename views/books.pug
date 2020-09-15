@@ -11,7 +11,7 @@ block content
       input.search-form__input(type='text', placeholder='Search')
 
     .books
-      each book in books
+      each book in listBook
         .book.card
           img.card-img-top(src=book.image)
           .card-body.d-flex-column
@@ -22,12 +22,12 @@ block content
       ul.pagination.pagination-lg.justify-content-center
         li.page-item
           a.page-link(href="/books?page=" + (currentPage - 1)) Previous
-        li.page-item
-          a.page-link(href="/books?page=" + (currentPage - 1))= currentPage - 1
-        li.page-item
-          a.page-link(href="/books?page=" + currentPage)= currentPage 
+        li.page-item.active
+          a.page-link(href="/books?page=" + (currentPage))= currentPage
         li.page-item
           a.page-link(href="/books?page=" + (currentPage + 1))= currentPage + 1
+        li.page-item
+          a.page-link(href="/books?page=" + (currentPage + 2))= currentPage + 2
         li.page-item
           a.page-link(href="/books?page=" + (currentPage + 1)) Next
 

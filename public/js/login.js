@@ -20,6 +20,7 @@ window.addEventListener("load", function () {
 
   // inputPassword.addEventListener("keyup", checkLengthInput);
 
+
   showPasswordIcon.addEventListener("click", function () {
     const inputPasswordType = inputPassword.getAttribute("type");
     inputPasswordType === "password" ? inputPassword.setAttribute("type", "text") : inputPassword.setAttribute("type", "password");
