@@ -10,25 +10,35 @@ module.exports = {
 			title: "Login",
 		});
 	},
+
 	postLogin: async function (req, res, next) {
 		const {
 			email,
 			password
 		} = req.body;
+		const errors = [];
+
 		const userMatch = await User.findOne({
 			email: email
 		});
 
-		if (userMatch) {
-			const result = await bcrypt.compare(password, userMatch.password);
-			if (result) { // password matched
-				var sessionData = req.session;
-				sessionData.user = userMatch.sessionID;
-				req.cookie = sessionData
-				return res.redirect("/books");
-			};
+		if (!userMatch) {
+			errors.push("Email not exist");
 		};
 
-		res.send("user or password invalid");
+		const result = await bcrypt.compare(password, userMatch.password);
+
+		if (!result) {
+			errors.push("Password invalid");
+			return res.render("login", {
+				errors
+			});
+		};
+
+		// password matched
+		var sessionData = req.session;
+		sessionData.user = userMatch.sessionID;
+		req.cookie = sessionData
+		return res.redirect("/books");
 	}
 };

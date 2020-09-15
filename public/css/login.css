@@ -1,13 +1,9 @@
-button {
-  cursor: pointer;
-}
-
 .login-form {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 35rem;
+  min-width: 35rem;
   margin: 0 auto;
   padding: 1.5rem;
 }

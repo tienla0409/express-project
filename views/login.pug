@@ -12,6 +12,12 @@ block content
 			i.fa.fa-eye.show-password
 		a.forgot(href='#') Forgot password?
 		a.register(href="/register") Register
+		small
+			ul
+				if errors
+					each err in errors
+						li= err
+				
 		//- button(class="disable__email, disable__password") Sign in
 		button Sign In
 

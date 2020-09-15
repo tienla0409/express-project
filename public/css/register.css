@@ -3,8 +3,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 35rem;
-  margin: 0 auto;
+  min-width: 35rem;
   padding: 1.5rem;
 }
 
@@ -24,8 +23,7 @@
   border-color: var(--primary);
 }
 
-.register-form .forgot,
-.login {
+.register-form .forgot {
   display: inline-block;
   text-transform: uppercase;
   color: #333;
@@ -62,6 +60,15 @@
 
 .login {
   float: right;
+  color: #000;
+}
+
+p.login a {
+  color: #355;
+}
+
+p.login a:hover {
+  color: #000;
 }
 
 .disable__email,
