@@ -6,8 +6,8 @@ const controllers = require("../controllers/register");
 // initial router
 const router = express.Router();
 
-router.get("/", controllers.getRegister);
-
-router.post("/", controllers.postRegister);
+router.route("/")
+  .get(controllers.getRegister)
+  .post(controllers.postRegister);
 
 module.exports = router;

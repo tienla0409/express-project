@@ -6,6 +6,7 @@ const controllers = require("../controllers/logout");
 // initial router
 const router = express.Router();
 
-router.get("/", controllers.logoutEmail);
+router.route("/")
+  .get(controllers.logoutEmail);
 
 module.exports = router;
