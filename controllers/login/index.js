@@ -23,42 +23,48 @@ module.exports = {
 			email: email
 		});
 
-		if (!userMatch) {
-			errors.push("Email not exist");
-		};
+		if (!userMatch) errors.push("Email not exist");
 
-		const result = await bcrypt.compare(password, userMatch.password);
+		if (userMatch && !userMatch.isVerified) errors.push("Email is not verify");
 
-		if (!result) {
-			errors.push("Password invalid");
-			return res.render("login", {
-				errors
+		if (userMatch && userMatch.isVerified) {
+			const result = await bcrypt.compare(password, userMatch.password);
+
+			if (!result) {
+				errors.push("Password invalid");
+				return res.render("login", {
+					errors
+				});
+			};
+
+			// password matched
+			const payload = {
+				user: userMatch._id,
+			};
+
+			const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+				algorithm: "HS256",
+				expiresIn: process.env.ACCESS_TOKEN_LIFE,
 			});
-		};
-
-		// password matched
-		const payload = {
-			user: userMatch._id,
-		};
-
-		const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
-			algorithm: "HS256",
-			expiresIn: process.env.ACCESS_TOKEN_LIFE,
-		});
 
 
-		// const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
-		// 	algorithm: "HS256",
-		// 	expiresIn: process.env.REFRESH_TOKEN_LIFE
-		// })
+			// const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
+			// 	algorithm: "HS256",
+			// 	expiresIn: process.env.REFRESH_TOKEN_LIFE
+			// })
 
-		// userMatch[email].refreshToken = refreshToken;
+			// userMatch[email].refreshToken = refreshToken;
 
-		// send the access token to the client inside a cookie
-		res.cookie("user", accessToken, {
-			httpOnly: true
-		});
+			// send the access token to the client inside a cookie
+			res.cookie("user", accessToken, {
+				httpOnly: true
+			});
 
-		return res.redirect("/books");
+			return res.redirect("/books");
+		}
+		res.render("login.pug", {
+			title: "Login",
+			errors
+		})
 	}
 };

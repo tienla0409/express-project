@@ -6,11 +6,8 @@ const controllers = require("../controllers/forgot");
 // initial router
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
-  res.render("forgot", {
-    title: "Forgot Password",
-    user: req.session.user
-  });
-});
+router.route("/")
+  .get(controllers.getForgot)
+  .post(controllers.forgotEmail);
 
 module.exports = router;

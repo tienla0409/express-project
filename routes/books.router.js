@@ -6,6 +6,8 @@ const controllers = require("../controllers/books");
 // initial router
 const router = express.Router();
 
-router.get("/", controllers.getBooks);
+router.route("/")
+  .get(controllers.getBooks);
+
 
 module.exports = router;

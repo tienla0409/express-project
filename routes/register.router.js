@@ -6,8 +6,11 @@ const controllers = require("../controllers/register");
 // initial router
 const router = express.Router();
 
-router.get("/", controllers.getRegister);
+router.route("/")
+  .get(controllers.getRegister)
+  .post(controllers.postRegister);
 
-router.post("/", controllers.postRegister);
+router.route("/confirmation/:id")
+  .get(controllers.getConfirmation)
 
 module.exports = router;
