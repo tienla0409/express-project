@@ -15,9 +15,9 @@ block content
       i.fa.fa-eye.show-password
     small
       ul
-        if errors
-          each err in errors
-            li= err
+        if messages
+          each mes in messages
+            li= mes
     //- button(class="disable__email disable__password disable__confirmPassword") Register
     button Register
     p.login You have account? &nbsp;
