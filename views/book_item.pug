@@ -1,0 +1,12 @@
+extends common.pug
+
+block head
+  title= title
+  link(rel="stylesheet", href="/css/book_item.css")
+
+block content
+  .container
+    .book
+      h2.title= book.title
+      img.image-fluid(src=(book.image), alt="")
+      p.description= book.description
