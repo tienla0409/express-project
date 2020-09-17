@@ -1,5 +1,5 @@
 // import third-party package
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // import models database
@@ -28,7 +28,7 @@ module.exports = {
 		if (userMatch && !userMatch.isVerified) errors.push("Email is not verify");
 
 		if (userMatch && userMatch.isVerified) {
-			const result = await bcrypt.compare(password, userMatch.password);
+			const result = userMatch.isValidPassword(password);
 
 			if (!result) {
 				errors.push("Password invalid");

@@ -15,7 +15,8 @@ const authMiddleware = require("./middleware/auth.middleware");
 // connect mongodb
 mongoose.connect(process.env.MONGODB_CONNECT, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connect error"));
