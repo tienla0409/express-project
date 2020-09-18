@@ -8,5 +8,6 @@ const router = express.Router();
 
 router.route("/change_password")
   .get(controllers.getChangePassword)
+  .post(controllers.postChangePassword)
 
 module.exports = router;

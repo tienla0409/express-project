@@ -28,7 +28,7 @@ module.exports = {
 		if (userMatch && !userMatch.isVerified) errors.push("Email is not verify");
 
 		if (userMatch && userMatch.isVerified) {
-			const result = userMatch.isValidPassword(password);
+			const result = await userMatch.isValidPassword(password);
 
 			if (!result) {
 				errors.push("Password invalid");
@@ -39,7 +39,7 @@ module.exports = {
 
 			// password matched
 			const payload = {
-				user: userMatch._id,
+				userId: userMatch._id,
 			};
 
 			const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {

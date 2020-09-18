@@ -5,7 +5,6 @@ const crypto = require("crypto");
 // import models database
 const User = require("../../models/user.model");
 const Token = require("../../models/token.model");
-const { token } = require("morgan");
 
 module.exports = {
   getRegister: function (req, res, next) {
@@ -15,7 +14,11 @@ module.exports = {
   },
 
   postRegister: async function (req, res, next) {
-    const { email, password, confirmPassword } = req.body; // data retrieve from form HTML
+    const {
+      email,
+      password,
+      confirmPassword
+    } = req.body;
 
     const messages = [];
 
@@ -54,8 +57,7 @@ module.exports = {
               from: "stone",
               to: email,
               subject: "Account verification token",
-              text:
-                "Hello\n\n" +
+              text: "Hello\n\n" +
                 "Please verify your account by clicking the link:\nhttp://" +
                 req.headers.host +
                 "/register/confirmation/" +
@@ -85,18 +87,22 @@ module.exports = {
     });
   },
 
-  getConfirmation: (req, res, next) => {
+  getConfirmation: async (req, res, next) => {
     try {
-      const tokenMatched = Token.findOne({ token: req.params.id });
+      const tokenMatched = await Token.findOne({
+        token: req.params.id
+      });
 
       if (!tokenMatched)
         return res
           .status(400)
           .send(
-            "We were unable to find a valid tokne. Your token my have expired"
+            "We were unable to find a valid token. Your token my have expired"
           );
 
-      const userMatched = User.findOne({ _id: tokenMatched._userId });
+      const userMatched = await User.findOne({
+        _id: tokenMatched._userId
+      });
 
       if (!userMatched)
         return res
@@ -104,11 +110,9 @@ module.exports = {
           .send("We were unable to find a user for this token.");
 
       userMatched.isVerified = true;
-      user.save((err) => {
-        if (err) return next(err);
+      await userMatched.save();
 
-        res.status(200).send("The account has been verified. Please log in.");
-      });
+      res.status(200).send("The account has been verified. Please log in.");
     } catch (err) {
       next(err);
     }
