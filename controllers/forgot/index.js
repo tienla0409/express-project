@@ -5,7 +5,7 @@ module.exports = {
   getForgot: (req, res, next) => {
     res.render("forgot", {
       title: "Forgot Password",
-      user: req.cookies.user
+      user: req.cookies.user,
     });
   },
 
@@ -14,7 +14,7 @@ module.exports = {
       service: "gmail",
       auth: {
         user: process.env.USERNAME_EMAIL,
-        pass: process.env.PASSWORD_EMAIL
+        pass: process.env.PASSWORD_EMAIL,
       },
     });
 
@@ -24,17 +24,15 @@ module.exports = {
       subject: "Reset password",
       text: generatorPassword.generate({
         length: 6,
-        numbers: true
+        numbers: true,
       }),
     };
 
     transporter.sendMail(mailOptions, (err, info) => {
-      if (err) return res.render("forgot", {
-        message: err.message
-      });
+      if (err) return next(err);
       res.render("forgot", {
-        message: "Check new password in email"
+        message: "Check new password in email",
       });
     });
   },
-}
+};
