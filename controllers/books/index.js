@@ -19,10 +19,10 @@ module.exports = {
         title: "List Book",
         listBook,
         currentPage,
-        user: req.cookies.user
+        user: req.cookies.user,
       });
     } catch (err) {
-      res.status(404).send(err.message);
+      return next(err);
     }
   },
 };

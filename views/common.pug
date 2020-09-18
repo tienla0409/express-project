@@ -16,12 +16,19 @@ html
 							a.nav-link(href="/") Home
 						li.nav-item
 							a.nav-link(href="/books") Books
-					if user
-						.logout
-							a(href="/logout") Logout
-					else
+					if !user
 						.login
 							a(href="/login") Login
+					else
+						.setting.dropdown
+							a(type="button", id="dropdown__setting", data-toggle="dropdown", aria-haspopup="true" aria-expanded="false")
+								img(src="https://via.placeholder.com/50", alt="")
+							.dropdown-menu(aria-labelledby="dropdown__setting")
+								a.dropdown-item(type="button") Change Avatar
+								a.dropdown-item(type="button", href="/setting/change_password") Change Password
+								a.dropdown-item(type="button", href="/logout") Logout
+
+							
 		block content
 
 		script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj', crossorigin='anonymous')

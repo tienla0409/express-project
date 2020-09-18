@@ -5,9 +5,6 @@ const crypto = require("crypto");
 // import models database
 const User = require("../../models/user.model");
 const Token = require("../../models/token.model");
-const {
-  token
-} = require("morgan");
 
 module.exports = {
   getRegister: function (req, res, next) {
@@ -21,7 +18,7 @@ module.exports = {
       email,
       password,
       confirmPassword
-    } = req.body; // data retrieve from form HTML
+    } = req.body;
 
     const messages = [];
 
@@ -39,14 +36,14 @@ module.exports = {
         });
 
         userNew.save((err) => {
-          if (err) return res.status(500).send(err.message);
+          if (err) next(err);
 
           const token = new Token({
             _userId: userNew._id,
             token: crypto.randomBytes(16).toString("hex"),
           });
           token.save((err) => {
-            if (err) return res.status(500).send(err.message);
+            if (err) next(err);
 
             const transporter = nodemailer.createTransport({
               service: "gmail",
@@ -68,7 +65,7 @@ module.exports = {
             };
 
             transporter.sendMail(mailOptions, (err) => {
-              if (err) return res.status(500).send(err.message);
+              if (err) next(err);
               messages.push(`A verification email has been sent to ${email}`);
             });
           });
@@ -90,33 +87,34 @@ module.exports = {
     });
   },
 
-  getConfirmation: (req, res, next) => {
-    Token.findOne({
-      token: req.params.id
-    }, (err, token) => {
-      if (!token)
+  getConfirmation: async (req, res, next) => {
+    try {
+      const tokenMatched = await Token.findOne({
+        token: req.params.id
+      });
+
+      if (!tokenMatched)
         return res
           .status(400)
           .send(
             "We were unable to find a valid token. Your token my have expired"
           );
 
-      User.findOne({
-        _id: token._userId
-      }, (err, user) => {
-        if (!user)
-          return res
-            .status(400)
-            .send("We were unable to find a user for this token.");
-        if (user.isVerified)
-          return res.status(400).send("This user has already been verified.");
-
-        user.isVerified = true;
-        user.save(function (err) {
-          if (err) return res.status(500).send(err.message);
-          res.status(200).send("The account has been verified. Please log in.");
-        });
+      const userMatched = await User.findOne({
+        _id: tokenMatched._userId
       });
-    });
+
+      if (!userMatched)
+        return res
+          .status(400)
+          .send("We were unable to find a user for this token.");
+
+      userMatched.isVerified = true;
+      await userMatched.save();
+
+      res.status(200).send("The account has been verified. Please log in.");
+    } catch (err) {
+      next(err);
+    }
   },
 };
