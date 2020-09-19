@@ -52,6 +52,7 @@ app.use(cookieParser());
 const loginRouter = require("./routes/login.router");
 const logoutRouter = require("./routes/logout.router");
 const forgotRouter = require("./routes/forgot.router");
+const resetRouter = require("./routes/reset.router");
 const registerRouter = require("./routes/register.router");
 const settingRouter = require("./routes/setting.router");
 const booksRouter = require("./routes/books.router");
@@ -60,8 +61,9 @@ const booksRouter = require("./routes/books.router");
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
 app.use("/forgot", forgotRouter);
+app.use("/reset", resetRouter);
 app.use("/register", registerRouter);
-app.use("/setting", settingRouter);
+app.use("/setting", authMiddleware.authLogin, settingRouter);
 app.use("/books", authMiddleware.authLogin, booksRouter);
 
 app.get("/", (req, res) => {
