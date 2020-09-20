@@ -45,4 +45,10 @@ module.exports = {
       errors
     });
   },
+
+  getInformation: (req, res, next) => {
+    res.render("information.pug", {
+      title: "Information",
+    })
+  },
 };

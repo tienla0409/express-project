@@ -1,0 +1,34 @@
+extends common.pug
+
+block head
+  title= title
+
+block content
+  .container
+    .row
+      .col-4
+        img(src="", alt="")
+        h1 Avatar
+      .col-8
+        form(action="/setting/information" method="POST")
+          .form-group.name.d-flex
+            div.name.first-name
+              label(for="firstName") First Name
+              input.form-control(id="firstName" type="text" name="firstName")
+            div.name.last_name
+              label(for="lastName") Last Name
+              input.form-control(id="lastName" type="text" name="lastName")
+
+          .form-group
+            label(for="email") Email
+            input.form-control(id="email" type="text" name="email" disabled)
+
+          .form-group
+            label(for="password") Password
+            input.form-control(id="password" type="password" name="email")
+            
+          .form-group
+            label(for="avatar") Choose avatar file &nbsp
+            input(type="file" id="avatar" name="avatar")
+
+          button.btn.btn-success(type="submit") Save    
