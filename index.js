@@ -63,7 +63,7 @@ app.use("/logout", logoutRouter);
 app.use("/forgot", forgotRouter);
 app.use("/reset", resetRouter);
 app.use("/register", registerRouter);
-app.use("/setting", authMiddleware.authLogin, settingRouter);
+app.use("/setting", settingRouter);
 app.use("/books", authMiddleware.authLogin, booksRouter);
 
 app.get("/", (req, res) => {

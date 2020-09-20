@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken");
+
+
 const User = require("../../models/user.model");
 
 module.exports = {
@@ -44,5 +46,65 @@ module.exports = {
       title: "Change Password",
       errors
     });
+  },
+
+  getInformation: async (req, res, next) => {
+    const accessToken = req.cookies.user;
+
+    try {
+      const payload = await jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+      const userMatched = await User.findById(payload.userId);
+
+      if (!userMatched) return res.status(403).send("Not found User");
+
+      const {
+        firstName,
+        lastName,
+        email,
+        avatar
+      } = userMatched;
+
+      res.render("information.pug", {
+        title: "Information",
+        user: req.cookies.user,
+        firstName,
+        lastName,
+        email,
+        avatar
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  postInformation: async (req, res, next) => {
+    const {
+      firstName,
+      lastName,
+    } = req.body;
+
+    let avatar;
+    if (req.file) {
+      avatar = req.file.path.split("\\").slice(1).join("/");
+    } else avatar = "";
+
+    const accessToken = req.cookies.user;
+
+    try {
+      const payload = await jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+      const userMatched = await User.findById(payload.userId);
+
+      if (!userMatched) return res.status(403).send("Not found User");
+
+      userMatched.firstName = firstName;
+      userMatched.lastName = lastName;
+      userMatched.avatar = avatar;
+
+      await userMatched.save();
+
+      res.redirect("/setting/information")
+    } catch (err) {
+      next(err);
+    }
   },
 };
