@@ -85,7 +85,7 @@ module.exports = {
 
     let avatar;
     if (req.file) {
-      avatar = req.file.path;
+      avatar = req.file.path.split("\\").slice(1).join("/");
     } else avatar = "";
 
     const accessToken = req.cookies.user;

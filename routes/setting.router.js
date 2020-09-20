@@ -3,7 +3,7 @@ const express = require("express");
 const multer = require("multer");
 
 const upload = multer({
-  dest: "images/"
+  dest: "public/images"
 });
 
 // import controllers 
