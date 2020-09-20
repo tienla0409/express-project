@@ -1,5 +1,11 @@
 const express = require("express");
 
+const multer = require("multer");
+
+const upload = multer({
+  dest: "images/"
+});
+
 // import controllers 
 const controllers = require("../controllers/setting");
 
@@ -12,5 +18,6 @@ router.route("/change_password")
 
 router.route("/information")
   .get(controllers.getInformation)
+  .post(upload.single("avatar"), controllers.postInformation)
 
 module.exports = router;
